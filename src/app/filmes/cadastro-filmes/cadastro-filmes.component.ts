@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CadastroFilmesComponent implements OnInit {
 
-  cadastro: FormGroup;
+  public cadastro: FormGroup;
 
   constructor(public validacao: ValidarCamposService, private fb: FormBuilder) { }
 
@@ -18,7 +18,6 @@ export class CadastroFilmesComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.cadastro = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
       urlFoto: ['', [Validators.minLength(10)]],
@@ -28,7 +27,6 @@ export class CadastroFilmesComponent implements OnInit {
       urlIMDB: ['', [Validators.minLength(10)]],
       genero: ['', [Validators.required]]
     });
-
   }
 
   salvar(): void{

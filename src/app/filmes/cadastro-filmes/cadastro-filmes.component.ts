@@ -1,8 +1,11 @@
+import { Alerta } from './../../shared/models/alerta';
 import { FilmesService } from './../../core/filmes.service';
 import { Filme } from './../../shared/models/filme';
 import { ValidarCamposService } from './../../shared/components/campos/validar-campos.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertaComponent } from 'src/app/shared/components/alerta/alerta.component';
 
 @Component({
   selector: 'dio-cadastro-filmes',
@@ -14,7 +17,12 @@ export class CadastroFilmesComponent implements OnInit {
   public cadastro: FormGroup;
   generos: Array<String>;
 
-  constructor(public validacao: ValidarCamposService, private fb: FormBuilder, private filmesService: FilmesService) { }
+  constructor(
+    public validacao: ValidarCamposService,
+    private fb: FormBuilder,
+    private filmesService: FilmesService,
+    public dialog: MatDialog
+  ) { }
 
   get f(){
     return this.cadastro.controls;
@@ -50,7 +58,15 @@ export class CadastroFilmesComponent implements OnInit {
 
   private salvar(filme: Filme): void{
     this.filmesService.salvar(filme).subscribe(() => {
-      alert("Sucesso");
+      const config = {
+        data: {
+          btnSucesso: 'Ir para a listagem',
+          btnCancelar: 'Cadastrar um novo filme',
+          corBtnCancelar: 'primary',
+          possuiBtnFechar: true
+        } as Alerta
+      };
+      const dialogRef = this.dialog.open(AlertaComponent, config);
     },
     () => {
       alert("Erro ao salvar");

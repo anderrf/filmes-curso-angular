@@ -179,6 +179,16 @@
       "urlIMDB": "",
       "genero": "Ficção científica",
       "id": 18
+    },
+    {
+      "titulo": "Teste6",
+      "urlFoto": "",
+      "dtLancamento": "2021-08-04T03:00:00.000Z",
+      "descricao": "",
+      "nota": 0.5,
+      "urlIMDB": "",
+      "genero": "Ficção científica",
+      "id": 19
     }
   ]
 }
